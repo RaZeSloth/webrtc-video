@@ -2,8 +2,10 @@ import Player from './Utils/player';
 import signalhub from "signalhub";
 import createSwarm from "webrtc-swarm";
 
+if(!navigator?.mediaDevices?.getUserMedia) console.log("Halb brauser")
+else
 navigator.mediaDevices
-  .getUserMedia({ /* video: true, */ audio: true })
+  .getUserMedia({ video: true, audio: true })
   .then(function (stream) {
 
     const hub = signalhub("my-game", [ "http://localhost:8080" ])
