@@ -8,7 +8,7 @@ navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then(function (stream) {
 
-    const hub = signalhub("webrtc-connection", [ "http://localhost:8080" ])
+    const hub = signalhub("webrtc-connection", [ `http://localhost:${process.env.PORT || 8080}` ])
     const swarm = createSwarm(hub, {
       stream: stream,
     })
