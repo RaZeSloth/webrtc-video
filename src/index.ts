@@ -11,7 +11,7 @@ navigator.mediaDevices
       stream: stream,
     })
 
-    const uusKasutaja = new uusBrauseriÜhendus({ x: 0, y: 0, color: "black", left: 0, top: 0 })
+    const uusKasutaja = new uusBrauseriÜhendus({ x: 0, y: 0, left: 0, top: 0 })
     uusKasutaja.addStream(stream)
     const kasutajad = {}
     swarm.on("connect", (peer, id: number) => {
@@ -21,7 +21,6 @@ navigator.mediaDevices
           y: 0,
           left: 200,
           top: 0,
-          color: "red",
         })
         peer.on("data", (data) => {
           data = JSON.parse(data.toString())

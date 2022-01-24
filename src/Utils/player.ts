@@ -1,7 +1,7 @@
 
 function uusBrauseriÜhendus(data) {
   data = data || {}
-  this.color = data.color || randomColor()
+  this.color = data.color || värviGen()
   this.x = data.x
   this.y = data.y
   this.top = data.top
@@ -31,13 +31,13 @@ uusBrauseriÜhendus.prototype.update = function(data) {
     left: this.x + "px",
   })
 }
-function randomColor() {
-  return (
-    "#" +
-    Math.random()
-      .toString(16)
-      .substring(-6)
-  )
+function värviGen() {
+    const tähed = '0123456789ABCDEF';
+    let värv = '#';
+    for (let i = 0; i < 6; i++) {
+      värv += tähed[Math.floor(Math.random() * 16)];
+    }
+    return värv;
 }
 
 
