@@ -14,7 +14,7 @@ navigator.mediaDevices
     const uusKasutaja = new uusBrauseriÜhendus({ x: 0, y: 0, color: "black", left: 0, top: 0 })
     uusKasutaja.addStream(stream)
     const kasutajad = {}
-    swarm.on("connect", (peer, id) => {
+    swarm.on("connect", (peer, id: number) => {
       if (!kasutajad[ id ]) {
         kasutajad[ id ] = new uusBrauseriÜhendus({
           x: 300,
@@ -31,7 +31,7 @@ navigator.mediaDevices
       }
     })
 
-    swarm.on("disconnect", function (peer, id) {
+    swarm.on("disconnect", function (peer, id: number) {
       if (kasutajad[ id ]) {
         kasutajad[ id ].element.parentNode.removeChild(kasutajad[ id ].element)
         delete kasutajad[ id ]
