@@ -1,5 +1,5 @@
 
-function Player(data) {
+function uusBrauseriÜhendus(data) {
   data = data || {}
   this.color = data.color || randomColor()
   this.x = data.x
@@ -18,11 +18,11 @@ function Player(data) {
   })
   document.body.appendChild(this.element)
 }
-Player.prototype.addStream = function(stream) {
+uusBrauseriÜhendus.prototype.addStream = function(stream) {
   this.element.srcObject = stream
   this.element.play()
 }
-Player.prototype.update = function(data) {
+uusBrauseriÜhendus.prototype.update = function(data) {
   data = data || {}
   this.x = data.x || this.x
   this.y = data.y || this.y
@@ -41,4 +41,4 @@ function randomColor() {
 }
 
 
-export default Player 
+export default uusBrauseriÜhendus 

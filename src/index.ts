@@ -1,64 +1,64 @@
-import Player from './Utils/player';
+import uusBrauseriÜhendus from './Utils/player';
 import signalhub from "signalhub";
 import createSwarm from "webrtc-swarm";
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
-  .then(function (stream) {
+  .then((stream: MediaStream) => {
 
     const hub = signalhub("webrtc-connection", [ `http://localhost:${process.env.PORT || 8080}` ])
     const swarm = createSwarm(hub, {
       stream: stream,
     })
 
-    const you = new Player({ x: 0, y: 0, color: "black", left: 0, top: 0 })
-    you.addStream(stream)
-    const players = {}
-    swarm.on("connect", function (peer, id) {
-      if (!players[ id ]) {
-        players[ id ] = new Player({
+    const uusKasutaja = new uusBrauseriÜhendus({ x: 0, y: 0, color: "black", left: 0, top: 0 })
+    uusKasutaja.addStream(stream)
+    const kasutajad = {}
+    swarm.on("connect", (peer, id) => {
+      if (!kasutajad[ id ]) {
+        kasutajad[ id ] = new uusBrauseriÜhendus({
           x: 300,
           y: 0,
           left: 200,
           top: 0,
           color: "red",
         })
-        peer.on("data", function (data) {
+        peer.on("data", (data) => {
           data = JSON.parse(data.toString())
-          players[ id ].update(data)
+          kasutajad[ id ].update(data)
         })
-        players[ id ].addStream(peer.stream)
+        kasutajad[ id ].addStream(peer.stream)
       }
     })
 
     swarm.on("disconnect", function (peer, id) {
-      if (players[ id ]) {
-        players[ id ].element.parentNode.removeChild(players[ id ].element)
-        delete players[ id ]
+      if (kasutajad[ id ]) {
+        kasutajad[ id ].element.parentNode.removeChild(kasutajad[ id ].element)
+        delete kasutajad[ id ]
       }
     })
     setInterval(function () {
       console.log("Interval Call")
-      you.update()
-      const youString = JSON.stringify(you)
-      swarm.peers.forEach(function (peer) {
+      uusKasutaja.update()
+      const youString = JSON.stringify(uusKasutaja)
+      swarm.peers.forEach((peer) => {
         peer.send(youString)
       })
     }, 100)
-    document.addEventListener('keypress', function (e) {
-      const speed = 16
+    document.addEventListener('keypress', (e) => {
+      const kiirus = 16
       switch (e.key) {
         case 'a':
-          you.x -= speed
+          uusKasutaja.x -= kiirus
           break
         case 'd':
-          you.x += speed
+          uusKasutaja.x += kiirus
           break
         case 'w':
-          you.y -= speed
+          uusKasutaja.y -= kiirus
           break
         case 's':
-          you.y += speed
+          uusKasutaja.y += kiirus
           break
       }
     }, false)
