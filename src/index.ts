@@ -6,7 +6,7 @@ navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then((stream: MediaStream) => {
 
-    const hub = signalhub("webrtc-connection", [ `http://localhost:${process.env.PORT || 8080}` ])
+    const hub = signalhub("webrtc-connection", [ `http://localhost:${process.env.PORT || 3000}` ])
     const swarm = createSwarm(hub, {
       stream: stream,
     })
@@ -37,7 +37,6 @@ navigator.mediaDevices
       }
     })
     setInterval(function () {
-      console.log("Interval Call")
       uusKasutaja.update()
       const youString = JSON.stringify(uusKasutaja)
       swarm.peers.forEach((peer) => {

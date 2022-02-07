@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc",
     "built": "yarn run budo ./dist/index.js",
-    "start": "tsc && yarn run budo ./dist/index.js",
-    "signal": "yarn run signalhub listen -p 8080",
+    "start": "yarn built & yarn signal &",
+    "signal": "yarn run signalhub listen -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
