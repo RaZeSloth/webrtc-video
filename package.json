@@ -7,7 +7,7 @@
     "build": "tsc",
     "built": "yarn run budo ./dist/index.js -p $(echo $PORT)",
     "start": "yarn built & yarn signal &",
-    "signal": "node ./dist/save.js && yarn run signalhub listen -p $(echo $PORT)",
+    "signal": "echo $PORT && yarn run signalhub listen -p 34346",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

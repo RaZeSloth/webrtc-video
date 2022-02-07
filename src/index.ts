@@ -5,10 +5,8 @@ import { Database } from "quickmongo";
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then(async(stream: MediaStream) => {
-    const db = new Database(process.env.uri);
-    await db.connect()
-    const SignalPort = await db.get("port");
-    const hub = signalhub("webrtc-connection", [ `http://localhost:${SignalPort || 3000}` ])
+ 
+    const hub = signalhub("webrtc-connection", [ `http://localhost:${34346}` ])
     const swarm = createSwarm(hub, {
       stream: stream,
     })
