@@ -6,7 +6,6 @@ function uusBrauseriÜhendus(data) {
   this.y = data.y
   this.top = data.top
   this.left = data.left
-  this.name = data.name
   this.element = document.createElement("video")
   this.element.volume = 0;
   Object.assign(this.element.style, {

@@ -1,4 +1,4 @@
-import uusBrauseriÜhendus from './Utils/player';
+import BrauseriÜhendus from './Utils/player';
 import signalhub from "signalhub";
 import createSwarm from "webrtc-swarm";
 
@@ -10,22 +10,24 @@ navigator.mediaDevices
       stream: stream,
     })
 
-    const uusKasutaja = new uusBrauseriÜhendus({ x: 0, y: 0, left: 0, top: 0 })
+    const uusKasutaja = new BrauseriÜhendus({ x: 0, y: 0, left: 0, top: 0 })
     uusKasutaja.addStream(stream)
     const kasutajad = {}
     swarm.on("connect", (peer, id: number) => {
-      console.log(kasutajad);
+      console.log(peer.stream)
       if (!kasutajad[ id ]) {
-        kasutajad[ id ] = new uusBrauseriÜhendus({
-          x: 300,
+        kasutajad[ id ] = new BrauseriÜhendus({
+          x: 0,
           y: 0,
-          left: 200,
+          left: 0,
           top: 0,
         })
         peer.on("data", (data) => {
           data = JSON.parse(data.toString())
           kasutajad[ id ].update(data)
         })
+        console.log("peer.stream")
+        console.log(peer.stream)
         kasutajad[ id ].addStream(peer.stream)
       }
     })
@@ -35,8 +37,6 @@ navigator.mediaDevices
         kasutajad[ id ].element.parentNode.removeChild(kasutajad[ id ].element)
         delete kasutajad[ id ]
       }
-      console.log(kasutajad);
-
     })
     setInterval(function () {
       uusKasutaja.update()
