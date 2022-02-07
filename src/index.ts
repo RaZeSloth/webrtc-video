@@ -5,7 +5,7 @@ import createSwarm from "webrtc-swarm";
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then(async(stream: MediaStream) => {
-    const hub = signalhub("webrtc-connection", [ `https://webrtc-video-loovtoo.herokuapp.com/` ])
+    const hub = signalhub("webrtc-connection", [ `http://signalhub-connection-host.herokuapp.com//` ])
     const swarm = createSwarm(hub, {
       stream: stream,
     })
