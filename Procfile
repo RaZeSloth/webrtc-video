@@ -1,2 +1,1 @@
-Web: yarn signal
-web: yarn start
+web: yarn built
