@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "built": "yarn run budo ./dist/index.js",
+    "built": "yarn run budo ./dist/index.js -p $(echo $PORT)",
     "start": "yarn built & yarn signal &",
     "signal": "yarn run signalhub listen -p $(echo $PORT)",
     "test": "echo \"Error: no test specified\" && exit 1"
