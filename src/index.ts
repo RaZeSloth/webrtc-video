@@ -1,7 +1,7 @@
 import uusBrauseriÜhendus from './Utils/player';
 import signalhub from "signalhub";
 import createSwarm from "webrtc-swarm";
-import fs from "fs";
+
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then(async(stream: MediaStream) => {
