@@ -1,11 +1,10 @@
 import uusBrauseriÜhendus from './Utils/player';
 import signalhub from "signalhub";
 import createSwarm from "webrtc-swarm";
-import { Database } from "quickmongo";
+
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then(async(stream: MediaStream) => {
- 
     const hub = signalhub("webrtc-connection", [ `http://localhost:${34346}` ])
     const swarm = createSwarm(hub, {
       stream: stream,

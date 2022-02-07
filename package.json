@@ -16,7 +16,6 @@
   "dependencies": {
     "@types/node": "^17.0.10",
     "budo": "^11.6.4",
-    "quickmongo": "^5.1.2",
     "signalhub": "^4.9.0",
     "simple-peer": "^9.11.0",
     "typescript": "^4.5.5",

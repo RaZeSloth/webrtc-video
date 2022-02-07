@@ -8,6 +8,7 @@ function uusBrauseriÜhendus(data) {
   this.left = data.left
   this.name = data.name
   this.element = document.createElement("video")
+  this.element.volume = 0;
   Object.assign(this.element.style, {
     width: "40%",
     height: "50%",
