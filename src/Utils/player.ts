@@ -16,6 +16,7 @@ function uusBrauseriÜhendus(data) {
     left: data.left + "px",
     backgroundColor: this.color,
   })
+  this.element.muted = true;
   document.body.appendChild(this.element)
 }
 uusBrauseriÜhendus.prototype.addStream = function(stream) {
