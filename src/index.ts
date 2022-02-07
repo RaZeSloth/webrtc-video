@@ -1,13 +1,13 @@
 import uusBrauseriÜhendus from './Utils/player';
 import signalhub from "signalhub";
 import createSwarm from "webrtc-swarm";
-import fs from "node:fs";
+import fs from "fs";
 
 navigator.mediaDevices
   .getUserMedia({ video: true, audio: true })
   .then((stream: MediaStream) => {
 
-    const hub = signalhub("webrtc-connection", [ `http://localhost:${fs.readFileSync("./port.txt").toString() || 3000}` ])
+    const hub = signalhub("webrtc-connection", [ `http://localhost:${parseInt(fs.readFileSync("./port.txt").toString()) || 3000}` ])
     const swarm = createSwarm(hub, {
       stream: stream,
     })
