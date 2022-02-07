@@ -1,2 +1,2 @@
-web: yarn built
 Worker: yarn signal
+web: yarn built
