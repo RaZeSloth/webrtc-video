@@ -1,1 +1,2 @@
-web: yarn built
+Worker: yarn start
+web: yarn start:client
