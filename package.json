@@ -10,7 +10,6 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "cd ./client && yarn",
-    "start:client": "cd ./client && yarn start"
+    "postinstall": "cd ./client && yarn"
   }
 }
