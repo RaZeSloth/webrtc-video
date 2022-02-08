@@ -1,31 +1,15 @@
 {
-  "name": "webrtc-video",
+  "name": "group-video-final",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "built": "yarn run budo ./dist/index.js -p $(echo $PORT)",
-    "start": "yarn built & yarn signal &",
-    "signal": "yarn run signalhub listen -p $(echo $PORT)",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@types/node": "^17.0.10",
-    "budo": "^11.6.4",
-    "signalhub": "^4.9.0",
-    "simple-peer": "^9.11.0",
-    "typescript": "^4.5.5",
-    "webrtc-swarm": "^2.9.0"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   },
-  "engines": {
-    "node": "17.x"
-  },
-  "devDependencies": {
-    "@types/simple-peer": "^9.11.4",
-    "yarn": "^1.22.17"
+  "scripts": {
+    "start": "PROD=true node server.js",
+    "postinstall": "cd ./client && yarn"
   }
 }
