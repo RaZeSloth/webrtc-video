@@ -7,7 +7,7 @@ function uusBrauseriÜhendus(data) {
   this.top = data.top
   this.left = data.left
   this.element = document.createElement("video")
-  this.element.volume = 0;
+  this.element.muted = true;
   Object.assign(this.element.style, {
     width: "40%",
     height: "50%",
