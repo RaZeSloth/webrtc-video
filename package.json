@@ -10,6 +10,6 @@
   },
   "scripts": {
     "start": "node server.js",
-    "start:client": "cd ./client && yarn start"
+    "start:client": "cd ./client && yarn && yarn start"
   }
 }
