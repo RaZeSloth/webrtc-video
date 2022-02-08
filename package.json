@@ -1,5 +1,5 @@
 {
-  "name": "group-video-final",
+  "name": "webrtc-video-loovtoo",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,7 +10,6 @@
   },
   "scripts": {
     "start": "node server.js",
-    "start:client": "cd ./client && yarn start",
-    "postinstall": "cd ./client && yarn"
+    "start:client": "cd ./client && yarn start"
   }
 }
