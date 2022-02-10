@@ -13,5 +13,8 @@
     "start": "node server.js",
     "start:client": "cd ./client && serve -s build -p $(echo $PORT)",
     "postinstall": "cd ./client && yarn && yarn build"
+  },
+  "engines": {
+    "node": "17.x"
   }
 }
