@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" exact component={<CreateRoom/>} />
-        <Route path="/room/:roomID" component={<Room/>} />
+      <Route path="/room/:roomID" element={<Room/>} />
+        <Route path="/" element={<CreateRoom/>} />
       </Routes>
     </BrowserRouter>
   );

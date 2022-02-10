@@ -1,14 +1,16 @@
 import React from "react";
 import { v1 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
+const CreateRoom = () => {
+    const navigate = useNavigate();
 
-const CreateRoom = (props) => {
-    function create() {
+    function Create() {
         const id = uuid();
-        props.history.push(`/room/${id}`);
+        navigate(`/room/${id}`);
     }
 
     return (
-        <button onClick={create}>Tee uus ruum!</button>
+        <button onClick={Create}>Tee uus ruum!</button>
     );
 };
 
