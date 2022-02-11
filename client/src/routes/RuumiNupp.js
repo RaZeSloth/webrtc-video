@@ -2,7 +2,7 @@ import React from "react";
 import { v1 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
-const CreateRoom = () => {
+const RuumiNupp = () => {
     const navigate = useNavigate();
 
     function Create() {
@@ -17,4 +17,4 @@ const CreateRoom = () => {
     );
 };
 
-export default CreateRoom;
+export default RuumiNupp;

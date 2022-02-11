@@ -4,13 +4,14 @@ import Peer from "simple-peer";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
-const Container = styled.div`
+const cssDiv = styled.div`
     padding: 20px;
     display: flex;
     height: 100vh;
     width: 90%;
     margin: auto;
     flex-wrap: wrap;
+    overflow: hidden;
 `;
 
 const StyledVideo = styled.video`
@@ -33,7 +34,7 @@ const Video = (props) => {
 }
 
 
-const videoConstraints = {
+const videoPiirid = {
     height: window.innerHeight / 2,
     width: window.innerWidth / 2
 };
@@ -41,21 +42,19 @@ const videoConstraints = {
 const Room = (props) => {
     const [peers, setPeers] = useState([]);
     const socketRef = useRef();
-    const userVideo = useRef();
+    const kasutajaVideo = useRef();
     const peersRef = useRef([]);
-    const params = useParams()
-    const roomID = params.roomID;
-    console.log(roomID)
-
+    const paramid = useParams()
+    const ruumiID = paramid.roomID;
     useEffect(() => {
         socketRef.current = io.connect("/");
-        navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true }).then(stream => {
-            userVideo.current.srcObject = stream;
-            socketRef.current.emit("join room", roomID);
-            socketRef.current.on("all users", users => {
+        navigator.mediaDevices.getUserMedia({ video: videoPiirid, audio: true }).then(striim => {
+            kasutajaVideo.current.srcObject = striim;
+            socketRef.current.emit("join room", ruumiID);
+            socketRef.current.on("all users", kasutajad => {
                 const peers = [];
-                users.forEach(userID => {
-                    const peer = createPeer(userID, socketRef.current.id, stream);
+                kasutajad.forEach(userID => {
+                    const peer = teePeer(userID, socketRef.current.id, striim);
                     peersRef.current.push({
                         peerID: userID,
                         peer,
@@ -65,46 +64,46 @@ const Room = (props) => {
                 setPeers(peers);
             })
 
-            socketRef.current.on("user joined", payload => {
-                const peer = addPeer(payload.signal, payload.callerID, stream);
+            socketRef.current.on("user joined", andmed => {
+                const peer = lisaPeer(andmed.signal, andmed.callerID, striim);
                 peersRef.current.push({
-                    peerID: payload.callerID,
+                    peerID: andmed.callerID,
                     peer,
                 })
 
                 setPeers(users => [...users, peer]);
             });
 
-            socketRef.current.on("receiving returned signal", payload => {
-                const item = peersRef.current.find(p => p.peerID === payload.id);
-                item.peer.signal(payload.signal);
+            socketRef.current.on("receiving returned signal", andmed => {
+                const asi = peersRef.current.find(p => p.peerID === andmed.id);
+                asi.peer.signal(andmed.signal);
             });
         })
     }, []);
 
-    function createPeer(userToSignal, callerID, stream) {
+    function teePeer(userToSignal, callerID, stream) {
         const peer = new Peer({
             initiator: true,
             trickle: false,
             stream,
         });
 
-        peer.on("signal", signal => {
-            socketRef.current.emit("sending signal", { userToSignal, callerID, signal })
+        peer.on("signal", signaal => {
+            socketRef.current.emit("sending signal", { userToSignal, callerID, signal: signaal })
         })
 
         return peer;
     }
 
-    function addPeer(incomingSignal, callerID, stream) {
+    function lisaPeer(incomingSignal, callerID, stream) {
         const peer = new Peer({
             initiator: false,
             trickle: false,
             stream,
         })
 
-        peer.on("signal", signal => {
-            socketRef.current.emit("returning signal", { signal, callerID })
+        peer.on("signal", signaal => {
+            socketRef.current.emit("returning signal", { signal: signaal, callerID })
         })
 
         peer.signal(incomingSignal);
@@ -113,14 +112,14 @@ const Room = (props) => {
     }
 
     return (
-        <Container>
-            <StyledVideo muted ref={userVideo} autoPlay playsInline />
-            {peers.map((peer, index) => {
+        <cssDiv>
+            <StyledVideo muted ref={kasutajaVideo} autoPlay playsInline />
+            {peers.map((peer, indeks) => {
                 return (
-                    <Video key={index} peer={peer} />
+                    <Video key={indeks} peer={peer} />
                 );
             })}
-        </Container>
+        </cssDiv>
     );
 };
 
